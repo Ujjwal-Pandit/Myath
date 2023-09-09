@@ -77,3 +77,14 @@ document.getElementById("mode-switch").addEventListener("click", function () {
         body.classList.add("dark-mode");
     }
 });
+
+//Code in the title page where the numbers move independently anywhere
+const shakingElements = document.querySelectorAll('.shaking-element');
+
+shakingElements.forEach((element) => {
+    const randomTop = Math.random() * 100 + 'vh'; // Random top position
+    const randomLeft = Math.random() * 100 + 'vw'; // Random left position
+
+    element.style.top = randomTop;
+    element.style.left = randomLeft;
+});

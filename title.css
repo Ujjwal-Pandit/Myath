@@ -1,0 +1,142 @@
+/* Styles for the title page */
+body.dark-mode #title-page {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center horizontally */
+    height: 100vh; /* Make the container cover the entire viewport height */
+}
+
+body.light-mode #title-page {
+    background-color: white;
+    color: #333;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center horizontally */
+    height: 100vh; /* Make the container cover the entire viewport height */
+}
+
+/* Button styles */
+.play-button,
+.settings-button,
+.leaderboard-button,
+.login-button {
+    background-color: #4CAF50; /* Green background color */
+    color: white;
+    font-size: 20px; /* Adjust the font size as needed */
+    padding: 10px 20px;
+    width: auto; /* Adjust the button width as needed */
+    height: auto; /* Adjust the button height as needed */
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Square button shape */
+.play-button,
+.settings-button,
+.leaderboard-button,
+.login-button {
+    width: 200px; /* Set the width of the button */
+    height: 50px; /* Set the height of the button */
+    border-radius: 10px; /* Add rounded corners */
+    text-align: center;
+    line-height: 50px; /* Vertically center the text */
+}
+
+/* Center the text in the buttons */
+.play-button,
+.settings-button,
+.leaderboard-button,
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover effect */
+.play-button:hover,
+.settings-button:hover,
+.leaderboard-button:hover,
+.login-button:hover {
+    background-color: #45a049; /* Darker green when hovering */
+    transform: scale(1.1); /* Enlarge the button on hover */
+}
+/* Title styling with IBM Plex font */
+.title {
+    font-family: 'IBM Plex Sans', sans-serif; /* Use IBM Plex font */
+    font-weight: 700; /* Bold */
+    font-size: 48px; /* Adjust the font size as needed */
+    margin-bottom: 5px; /* Reduce margin for a slight gap */
+}
+
+.subtitle {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-top: -10px; /* Slightly overlap the subtitle with the title */
+}
+/* Add a thicker glowing outline to the edge of the body */
+body.dark-mode::before,
+body.light-mode::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    border: 10px solid transparent; /* Adjust the border thickness */
+    border-radius: 10px; /* Rounded corners */
+    animation: glowing-outline 4s linear infinite; /* Adjust the animation duration as needed */
+}
+
+/* Define the glowing animation */
+@keyframes glowing-outline {
+    0% {
+        border-color: rgba(76, 175, 80, 0.2); /* Initial glow color and opacity */
+    }
+    50% {
+        border-color: rgba(76, 175, 80, 0.6); /* Midpoint glow color and opacity */
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.4); /* Add a shadow effect */
+    }
+    100% {
+        border-color: rgba(76, 175, 80, 0.2); /* Final glow color and opacity */
+    }
+}
+/* CSS for the container */
+.math-elements {
+    position: absolute;
+}
+
+/* Shaking animation */
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(-5px, 5px);
+    }
+    50% {
+        transform: translate(5px, -5px);
+    }
+    75% {
+        transform: translate(-5px, 5px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Apply the animation to the shaking elements */
+.shaking-element {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin: 5px;
+    color: white;
+    animation: shake 2s ease-in-out infinite;
+}

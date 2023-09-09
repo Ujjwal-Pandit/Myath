@@ -4,20 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="title.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&display=swap">
     <script src="script.js" defer></script>
     <title>Myath - Math Practice Game</title>
 </head>
 <body class="dark-mode">
-    <div id="mode-switch" class="dark-mode">
-        <span id="mode-text">D</span>
+    <!-- Title page container -->
+    <div id="title-page">
+        <!-- Title -->
+        <h1 class="title">Myath</h1>
+        <!-- Subtitle -->
+        <p class="subtitle">Math Practice Game</p>
+
+        <!-- Buttons Container -->
+        <div class="button-container">
+            <button class="play-button">Play Bullet</button>
+            <button class="play-button">Play Classical</button>
+            <button class="settings-button">Settings</button>
+            <button class="leaderboard-button">Leaderboard</button>
+            <button class="login-button">Login/Signup</button>
+        </div>
     </div>
-    <h1>Myath - Math Practice Game</h1>
-    <div id="question-container">
+
+    <!-- The rest of your game content, hidden initially -->
+    <div id="question-container" style="display: none;">
         <!-- Display math questions here -->
     </div>
-    <div id="answers-container">
-        <!-- Display multiple choice answers here -->
+    <div id="answers-container" style="display: none;">
+        <!-- Display multiple-choice answers here -->
     </div>
-    <div id="feedback"></div>
+    <div id="feedback" style="display: none;"></div>
 </body>
 </html>

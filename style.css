@@ -1,0 +1,114 @@
+/* Common styles for both modes */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+    color: inherit;
+}
+
+/* Dark mode */
+body.dark-mode {
+    background-color: #333;
+    color: white;
+}
+
+/* Light mode */
+body.light-mode {
+    background-color: white;
+    color: #333;
+}
+
+/* Question styling */
+#question-container {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-top: 20px;
+}
+
+/* Multiple choice answers styling */
+#answers-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333; /* Border color for circular spaces */
+    border-radius: 50%; /* Create circular shapes */
+    background-color: transparent;
+    color: inherit;
+    font-size: 16px; /* Adjust the font size as needed */
+    margin: 0 10px; /* Add spacing between answers */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+/* Mode switch box styling */
+#mode-switch {
+    position: absolute;
+    top: 20px; /* Adjust the position as needed */
+    right: 20px; /* Adjust the position as needed */
+    width: 40px; /* Adjust the box size as needed */
+    height: 40px; /* Adjust the box size as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid #333;
+    transition: background-color 0.3s;
+}
+
+/* Styles for dark mode */
+body.dark-mode button {
+    background-color: white; /* Background color for buttons in dark mode */
+    color: #333; /* Text color for buttons in dark mode */
+}
+
+body.dark-mode button:hover {
+    background-color: #333; /* Background color when hovering in dark mode */
+    color: white; /* Text color when hovering in dark mode */
+}
+
+body.dark-mode #mode-switch {
+    background-color: #333; /* Background color for dark mode */
+    border-color: white; /* Border color for dark mode */
+    color: white; /* Text color for dark mode */
+}
+
+/* Styles for light mode */
+body.light-mode button {
+    background-color: #333; /* Background color for buttons in light mode */
+    color: white; /* Text color for buttons in light mode */
+}
+
+body.light-mode button:hover {
+    background-color: white; /* Background color when hovering in light mode */
+    color: #333; /* Text color when hovering in light mode */
+}
+
+body.light-mode #mode-switch {
+    background-color: white; /* Background color for light mode */
+    border-color: #333; /* Border color for light mode */
+    color: #333; /* Text color for light mode */
+}
+
+/* Exclude circular style for the "Toggle Dark/Light Mode" button */
+#mode-toggle {
+    width: auto;
+    height: auto;
+    border: none;
+    border-radius: 0; /* Remove circular shape */
+    background-color: transparent;
+    color: inherit;
+    font-size: 16px; /* Adjust the font size as needed */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #333; /* Background color when hovering */
+    color: white; /* Text color when hovering */
+}

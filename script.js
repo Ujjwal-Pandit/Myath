@@ -1,90 +1,114 @@
-// Generate a random addition problem
-function generateAdditionProblem() {
-    const num1 = Math.floor(Math.random() * 10) + 1;
-    const num2 = Math.floor(Math.random() * 10) + 1;
-    const correctAnswer = num1 + num2;
+// Variables for game state
+let currentQuestionIndex = 0; // Index of the current question
+let score = 0; // Player's score
+let timer; // Timer interval
+let timeRemaining = 60; // Initial time (in seconds)
 
-    // Generate three other random wrong answers
-    const wrongAnswers = [];
-    while (wrongAnswers.length < 3) {
-        const wrongAnswer = Math.floor(Math.random() * 20) + 1;
-        if (wrongAnswer !== correctAnswer && !wrongAnswers.includes(wrongAnswer)) {
-            wrongAnswers.push(wrongAnswer);
-        }
-    }
+// Array of math questions
+const questions = [
+    { num1: 5, num2: 3, operator: '+', correctAnswer: 8, answers: [8, 6, 10, 9] },
+    // Add more questions here with the same format
+];
 
-    // Shuffle the answers (put the correct answer in a random position)
-    const answers = [correctAnswer, ...wrongAnswers];
-    shuffleArray(answers);
-
-    return { num1, num2, operator: '+', correctAnswer, answers };
-}
-
-// Shuffle an array (Fisher-Yates shuffle)
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
-
-
-// Initialize the game
+// Function to start the game
 function startGame() {
-    const question = generateAdditionProblem();
-    displayQuestion(question);
+    displayQuestion(); // Initialize the game by displaying the first question
 }
 
-function displayQuestion(question) {
+// Function to generate a random math problem
+function generateRandomProblem() {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    return questions[randomIndex];
+}
+
+// Function to display a math question
+function displayQuestion() {
+    // Get a random math problem
+    const problem = generateRandomProblem();
+
     // Display the math question
     const questionContainer = document.getElementById("question-container");
-    questionContainer.textContent = `${question.num1} + ${question.num2} = ?`;
+    questionContainer.textContent = `${problem.num1} ${problem.operator} ${problem.num2}`;
 
-    // Display the multiple choice answers
+    // Display the answer options
     const answersContainer = document.getElementById("answers-container");
     answersContainer.innerHTML = "";
 
-    question.answers.forEach((answer) => {
+    // Create answer buttons for options
+    problem.answers.forEach((answer) => {
         const button = document.createElement("button");
         button.textContent = answer;
-        button.addEventListener("click", () => checkAnswer(answer, question.correctAnswer));
+        button.addEventListener("click", () => handleAnswer(answer, problem.correctAnswer));
         answersContainer.appendChild(button);
     });
+
+    // Start the timer when the user selects an answer
+    startTimer();
 }
 
-function checkAnswer(selectedAnswer, correctAnswer) {
-    const feedback = document.getElementById("feedback");
-    if (selectedAnswer === correctAnswer) {
-        feedback.textContent = "Correct! Well done.";
+// Function to start the timer
+function startTimer() {
+    // Clear any existing timer
+    clearInterval(timer);
+
+    // Update the timer bar color
+    const timerBar = document.getElementById("timer-bar");
+    timerBar.style.backgroundColor = "green";
+
+    // Set up the timer interval
+    timer = setInterval(() => {
+        timeRemaining--;
+
+        // Update the timer bar width based on remaining time
+        const timerWidth = (timeRemaining / 60) * 100;
+        timerBar.style.width = `${timerWidth}%`;
+
+        // Change the timer bar color from green to red as time runs out
+        if (timeRemaining <= 10) {
+            timerBar.style.backgroundColor = "red";
+        }
+
+        // Check if time is up and end the game
+        if (timeRemaining <= 0) {
+            endGame();
+        }
+    }, 1000);
+}
+
+// Function to handle user answers
+function handleAnswer(selectedAnswer, correctAnswer) {
+    // Check if the selected answer is correct
+    if (selectedAnswer === correctAnswer.toString()) {
+        // Increase the score for correct answers
+        score += 2;
     } else {
-        feedback.textContent = "Incorrect. Try again.";
+        // Implement logic for incorrect answers here, e.g., highlighting and waiting
     }
-    // You can add more logic for scoring, next question, etc.
+
+    // Move to the next question
+    currentQuestionIndex++;
+
+    // Display the updated score
+    displayScore();
+
+    // Display the next question
+    displayQuestion();
 }
 
-// Call startGame to begin the game
+// Function to display and update the score
+function displayScore() {
+    const scoreDisplay = document.getElementById("score");
+    scoreDisplay.textContent = `Score: ${score}`;
+}
+
+// Function to end the game
+function endGame() {
+    // Clear the timer
+    clearInterval(timer);
+
+    // Implement game over logic, e.g., display final score and message
+    alert(`Game Over!\nYour Final Score: ${score}`);
+}
+
+// Call startGame to begin the game when the page loads
 startGame();
-
-// Toggle between dark and light modes
-document.getElementById("mode-switch").addEventListener("click", function () {
-    const body = document.body;
-    if (body.classList.contains("dark-mode")) {
-        body.classList.remove("dark-mode");
-        body.classList.add("light-mode");
-    } else {
-        body.classList.remove("light-mode");
-        body.classList.add("dark-mode");
-    }
-});
-
-//Code in the title page where the numbers move independently anywhere
-const shakingElements = document.querySelectorAll('.shaking-element');
-
-shakingElements.forEach((element) => {
-    const randomTop = Math.random() * 100 + 'vh'; // Random top position
-    const randomLeft = Math.random() * 100 + 'vw'; // Random left position
-
-    element.style.top = randomTop;
-    element.style.left = randomLeft;
-});

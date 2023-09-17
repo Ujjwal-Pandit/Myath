@@ -112,3 +112,115 @@ button:hover {
     background-color: #333; /* Background color when hovering */
     color: white; /* Text color when hovering */
 }
+
+/* Styles for Play Bullet page */
+body {
+    font-family: 'IBM Plex Sans', sans-serif; /* Use IBM Plex font or your preferred font */
+    background-color: #333; /* Dark mode background color */
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+#play-bullet-container {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+#question-container {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.math-problem {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#answers-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.answer-row{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.answer-option {
+    flex: 1;
+    background-color: #555;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.answer-option:hover{
+    background-color: #666;
+}
+
+#timer-container{
+    width: 100%;
+    height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#timer-bar {
+    height: 100%;
+    width: 100%;
+    background-color: green; /*Timer bar starts green */
+    border-radius: 5px;
+    animation: timer-fill 60s linear;
+}
+
+/* Define the timer-fill animation */
+@keyframes timer-fill {
+    0%{
+        width: 100%;
+        background-color: green;
+    }
+    100% {
+        width: 0;
+        background-color: red;
+    }
+}
+/* Glowing outline for the edge of the body */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    border: 10px solid transparent; /* Adjust the border thickness */
+    border-radius: 10px; /* Rounded corners */
+    animation: glowing-outline 4s linear infinite; /* Adjust the animation duration as needed */
+}
+
+/* Define the glowing animation */
+@keyframes glowing-outline {
+    0% {
+        border-color: rgba(76, 175, 80, 0.2); /* Initial glow color and opacity */
+    }
+    25% {
+        border-color: rgba(76, 175, 80, 0.6); /* Midpoint glow color and opacity */
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.4); /* Add a shadow effect */
+    }
+    50% {
+        border-color: rgba(76, 175, 80, 0.2); /* Final glow color and opacity */
+    }
+}
